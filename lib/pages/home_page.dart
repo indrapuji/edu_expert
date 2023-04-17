@@ -1,4 +1,4 @@
-import 'package:edu_expert/pages/detail_page.dart';
+import 'package:edu_expert/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const DetailPage(),
+                            builder: (context) => const ProfilePage(),
                           ));
                     },
                     child: Container(
