@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -71,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: TextStyle(color: Colors.white60, fontSize: 20),
                     ),
                   ],
-                ),
+                ).animate().fade(duration: 500.ms).scale(),
                 const SizedBox(
                   height: 25,
                 ),
@@ -91,7 +92,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Text(
                                     "Email",
                                     style: TextStyle(
-                                        // color: Colors.white,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -111,7 +111,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Text(
                                       "indrapuji@gmail.com",
                                       style: TextStyle(
-                                          // color: Colors.white,
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -127,7 +126,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Text(
                                     "Jenis Kelamin",
                                     style: TextStyle(
-                                        // color: Colors.white,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -147,7 +145,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Text(
                                       "Laki - laki",
                                       style: TextStyle(
-                                          // color: Colors.white,
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -163,7 +160,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Text(
                                     "Tanggal Lahir",
                                     style: TextStyle(
-                                        // color: Colors.white,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -183,7 +179,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Text(
                                       "10 November 1985",
                                       style: TextStyle(
-                                          // color: Colors.white,
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -199,7 +194,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Text(
                                     "No Telp",
                                     style: TextStyle(
-                                        // color: Colors.white,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -219,7 +213,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Text(
                                       "081996946467",
                                       style: TextStyle(
-                                          // color: Colors.white,
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
