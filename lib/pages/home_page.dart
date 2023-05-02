@@ -8,7 +8,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+var _controller = TextEditingController();
+
 class _HomePageState extends State<HomePage> {
+  bool _btnActive = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,26 +68,33 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 25,
               ),
-              Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)),
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    children: const [
-                      Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Search",
-                        style: TextStyle(color: Colors.grey, fontSize: 18),
-                      )
-                    ],
-                  )),
+              TextField(
+                controller: _controller,
+                onChanged: (value) {
+                  setState(() {
+                    _btnActive = value.isEmpty ? true : false;
+                  });
+                },
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    fillColor: Colors.white,
+                    filled: true,
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: _btnActive
+                        ? null
+                        : IconButton(
+                            onPressed: _controller.clear,
+                            icon: const Icon(
+                              Icons.check,
+                            ),
+                          ),
+                    hintText: "Search"),
+              ),
               const SizedBox(
                 height: 25,
               ),

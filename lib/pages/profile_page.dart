@@ -222,6 +222,33 @@ class _ProfilePageState extends State<ProfilePage> {
                               const SizedBox(
                                 height: 25,
                               ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        "LinkedIn",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  VerticalDivider(width: 1.0),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        "Github",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
                         ),
