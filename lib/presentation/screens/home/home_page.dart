@@ -1,5 +1,12 @@
-import 'package:edu_expert/pages/profile_page.dart';
+import 'package:dio/dio.dart';
+import 'package:edu_expert/data/datasource/book_remote.datasource.dart';
+import 'package:edu_expert/domain/use_case/get_book_use_case.dart';
+import 'package:edu_expert/presentation/screens/home/home_controller.dart';
+import 'package:edu_expert/presentation/screens/profile/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../data/repository/book_repository.impl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +19,14 @@ var _controller = TextEditingController();
 
 class _HomePageState extends State<HomePage> {
   bool _btnActive = true;
+
+  final controller = HomeController(
+    GetBookUseCase(
+      BookRepositoryImpl(
+        BookRemoteDatasource(Dio()),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: const [
                       Text(
-                        "News",
+                        "Books List",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -112,11 +127,78 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                  child: GetBuilder<HomeController>(
+                      init: controller,
+                      initState: (state) => controller.getBook(),
+                      builder: (context) {
+                        return ListView.separated(
+                            itemCount: controller.books.value.length,
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(height: 8),
+                            itemBuilder: (context, index) {
+                              final book = controller.books.value[index];
+                              return Row(
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    color: Colors.red,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        book.title ?? 'No Title',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18),
+                                      ),
+                                      const Text('Lorem Ipsum Subtitle'),
+                                    ],
+                                  )
+                                ],
+                              );
+                            });
+                      }))
             ],
           ),
         ),
       ),
+
+      // ListView.separated(
+      //       itemCount: 100,
+      //       padding: const EdgeInsets.all(16),
+      //       separatorBuilder: (context, index) => const SizedBox(height: 8),
+      //       itemBuilder: (context, index) {
+      //         return Row(
+      //           children: [
+      //             Container(
+      //               height: 50,
+      //               width: 50,
+      //               color: Colors.red,
+      //             ),
+      //             const SizedBox(width: 8),
+      //             Column(
+      //               crossAxisAlignment: CrossAxisAlignment.start,
+      //               children: const [
+      //                 Text(
+      //                   "lorem ipsum",
+      //                   style: TextStyle(
+      //                       fontWeight: FontWeight.w600, fontSize: 18),
+      //                 ),
+      //                 Text('Lorem Ipsum Subtitle'),
+      //               ],
+      //             )
+      //           ],
+      //         );
+      //       })
     );
   }
 }
