@@ -6,7 +6,7 @@ import 'package:edu_expert/presentation/screens/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/repository/book_repository.impl.dart';
+import '../../../data/repository/book_repository_impl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -150,18 +150,25 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.red,
                                   ),
                                   const SizedBox(width: 8),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        book.title ?? 'No Title',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18),
-                                      ),
-                                      const Text('Lorem Ipsum Subtitle'),
-                                    ],
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          book.title ?? 'No Title',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18),
+                                        ),
+                                        Text(
+                                          book.subtitle ?? 'No Title',
+                                          maxLines: 2,
+                                        ),
+                                      ],
+                                    ),
                                   )
                                 ],
                               );
